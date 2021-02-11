@@ -1,4 +1,4 @@
-package com.suret.stopwatchandtimer.ui.home;
+package com.suret.stopwatchandtimer.ui.timer;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,22 +22,22 @@ import java.util.Locale;
 
 public class TimerFragment extends Fragment {
 
+    private CountDownTimer countDownTimer;
     private TextView mTextViewCountDown;
     private NumberPicker hourPicker;
     private NumberPicker minutePicker;
     private NumberPicker secondPicker;
-    private int hour, minute, second;
     private MediaPlayer spinEffect;
-    private CountDownTimer countDownTimer;
-    private boolean mTimerRunning;
-    private long mStartTimeInMillis;
-    private long mTimeLeftMillis;
-    private long mEndTime;
     private LinearLayout linearLayout;
     private Button start_btn, stop_btn;
     private View myView;
     private LinearLayout spinLayout;
+    private int hour, minute, second;
     private boolean isPaused;
+    private boolean mTimerRunning;
+    private long mStartTimeInMillis;
+    private long mTimeLeftMillis;
+    private long mEndTime;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -72,7 +71,6 @@ public class TimerFragment extends Fragment {
         linearLayout.addView(myView);
         myView.setVisibility(View.INVISIBLE);
 
-
         start_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,19 +90,15 @@ public class TimerFragment extends Fragment {
                 updateWatchInterface();
             }
         });
-
     }
 
     private void startTimer() {
 
         if (isPaused != true) {
-            mStartTimeInMillis =(hour * 3600000) + (minute * 60000) + (second * 1000) + 1000;
+            mStartTimeInMillis = (hour * 3600000) + (minute * 60000) + (second * 1000) + 1000;
             mTimeLeftMillis = mStartTimeInMillis;
         }
-
         mEndTime = System.currentTimeMillis() + mTimeLeftMillis;
-
-        Toast.makeText(getActivity(), "Timer: " + mTimeLeftMillis, Toast.LENGTH_SHORT).show();
 
         countDownTimer = new CountDownTimer(mTimeLeftMillis, 1000) {
             @Override
@@ -199,6 +193,4 @@ public class TimerFragment extends Fragment {
             start_btn.setVisibility(View.VISIBLE);
         }
     }
-
-
 }

@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.suret.stopwatchandtimer.ui.dashboard.StopWatchFragment;
-import com.suret.stopwatchandtimer.ui.home.TimerFragment;
+import com.suret.stopwatchandtimer.ui.stopwatch.StopWatchFragment;
+import com.suret.stopwatchandtimer.ui.timer.TimerFragment;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

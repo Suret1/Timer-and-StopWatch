@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StopWatchAndTimer</string>
+    <string name="app_name">Timer &amp; StopWatch</string>
     <string name="title_timer">Timer</string>
     <string name="title_stopwatch">StopWatch</string>
     <string name="open_sans">open_sans</string>

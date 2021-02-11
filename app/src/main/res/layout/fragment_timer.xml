@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.home.TimerFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/spinLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <com.shawnlin.numberpicker.NumberPicker
+                        android:id="@+id/hours_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:np_dividerColor="@color/white"
+                        app:np_formatter="%02d"
+                        app:np_height="180dp"
+                        app:np_max="23"
+                        app:np_min="0"
+                        app:np_selectedTextColor="@color/black"
+                        app:np_selectedTextSize="45sp"
+                        app:np_selectedTypeface="@string/roboto_light"
+                        app:np_textColor="@color/black"
+                        app:np_textSize="45sp"
+                        app:np_typeface="@string/roboto_thin"
+                        app:np_width="64dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <com.shawnlin.numberpicker.NumberPicker
+                        android:id="@+id/minutes_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:np_dividerColor="@color/white"
+                        app:np_formatter="%02d"
+                        app:np_height="180dp"
+                        app:np_max="59"
+                        app:np_min="0"
+                        app:np_selectedTextColor="@color/black"
+                        app:np_selectedTextSize="45sp"
+                        app:np_selectedTypeface="@string/roboto_light"
+                        app:np_textColor="@color/black"
+                        app:np_textSize="45sp"
+                        app:np_typeface="@string/roboto_thin"
+                        app:np_width="64dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <com.shawnlin.numberpicker.NumberPicker
+                        android:id="@+id/seconds_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:np_dividerColor="@color/white"
+                        app:np_formatter="%02d"
+                        app:np_height="180dp"
+                        app:np_max="59"
+                        app:np_min="0"
+                        app:np_selectedTextColor="@color/black"
+                        app:np_selectedTextSize="45sp"
+                        app:np_selectedTypeface="@string/roboto_light"
+                        app:np_textColor="@color/black"
+                        app:np_textSize="45sp"
+                        app:np_typeface="@string/roboto_thin"
+                        app:np_width="64dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:background="@drawable/custom_start_button"
+                android:id="@+id/stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stop"
+                android:drawableLeft="@drawable/stop"
+                app:backgroundTint="@null"
+                android:fontFamily="@font/open_sans"
+                android:visibility="invisible"
+                android:drawableTint="@color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_start_button"
+                android:drawableLeft="@drawable/play"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/open_sans"
+                android:text="Start"
+                android:visibility="invisible"
+                android:textColor="@color/white"
+                app:backgroundTint="@null" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

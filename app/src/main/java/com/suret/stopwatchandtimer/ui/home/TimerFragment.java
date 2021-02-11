@@ -38,6 +38,7 @@ public class TimerFragment extends Fragment {
     private Button start_btn, stop_btn;
     private View myView;
     private LinearLayout spinLayout;
+    private boolean isPaused;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -71,12 +72,15 @@ public class TimerFragment extends Fragment {
         linearLayout.addView(myView);
         myView.setVisibility(View.INVISIBLE);
 
+
         start_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startTimer();
-                mTimerRunning = true;
-                updateWatchInterface();
+                if (mTimerRunning) {
+                    pauseTimer();
+                } else {
+                    startTimer();
+                }
 
             }
         });
@@ -84,10 +88,63 @@ public class TimerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mTimerRunning = false;
+                isPaused = false;
                 updateWatchInterface();
             }
         });
 
+    }
+
+    private void startTimer() {
+
+        if (isPaused != true) {
+            mStartTimeInMillis =(hour * 3600000) + (minute * 60000) + (second * 1000) + 1000;
+            mTimeLeftMillis = mStartTimeInMillis;
+        }
+
+        mEndTime = System.currentTimeMillis() + mTimeLeftMillis;
+
+        Toast.makeText(getActivity(), "Timer: " + mTimeLeftMillis, Toast.LENGTH_SHORT).show();
+
+        countDownTimer = new CountDownTimer(mTimeLeftMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftMillis = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+                isPaused = false;
+                updateWatchInterface();
+            }
+        }.start();
+        mTimerRunning = true;
+        updateWatchInterface();
+    }
+
+    private void updateCountDownText() {
+        int hours = (int) (mTimeLeftMillis / 1000) / 3600;
+        int minutes = (int) ((mTimeLeftMillis / 1000) % 3600) / 60;
+        int seconds = (int) (mTimeLeftMillis / 1000) % 60;
+
+        String timeLeftFormatted;
+        if (hours > 0) {
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds);
+        } else {
+            timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        }
+        mTextViewCountDown.setText(timeLeftFormatted);
+    }
+
+    private void pauseTimer() {
+        countDownTimer.cancel();
+        start_btn.setText("Start");
+        start_btn.setBackgroundResource(R.drawable.custom_start_button);
+        start_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.play, 0, 0, 0);
+        mTimerRunning = false;
+        isPaused = true;
     }
 
     private void updateWatchInterface() {
@@ -143,41 +200,5 @@ public class TimerFragment extends Fragment {
         }
     }
 
-    private void startTimer() {
-        mStartTimeInMillis = (hour * 3600000) + (minute * 60000) + (second * 1000) + 1000;
-        mTimeLeftMillis = mStartTimeInMillis;
-
-        mEndTime = System.currentTimeMillis() + mTimeLeftMillis;
-
-        Toast.makeText(getActivity(), "Timer: " + mTimeLeftMillis, Toast.LENGTH_SHORT).show();
-
-        countDownTimer = new CountDownTimer(mTimeLeftMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftMillis = millisUntilFinished;
-                updateCountDownText();
-            }
-
-            @Override
-            public void onFinish() {
-                mTimerRunning = false;
-            }
-        }.start();
-        mTimerRunning = true;
-    }
-
-    private void updateCountDownText() {
-        int hours = (int) (mTimeLeftMillis / 1000) / 3600;
-        int minutes = (int) ((mTimeLeftMillis / 1000) % 3600) / 60;
-        int seconds = (int) (mTimeLeftMillis / 1000) % 60;
-
-        String timeLeftFormatted;
-        if (hours > 0) {
-            timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds);
-        } else {
-            timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-        }
-        mTextViewCountDown.setText(timeLeftFormatted);
-    }
 
 }

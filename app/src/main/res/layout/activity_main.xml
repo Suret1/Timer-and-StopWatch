@@ -13,6 +13,8 @@
         android:id="@+id/animated_bottom_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:abb_textStyle="normal"
+        app:abb_tabColor="@color/black"
         app:abb_selectedTabType="icon"
         app:abb_tabColorSelected="#3F51B5"
         app:abb_tabs="@menu/bottom_nav_menu"

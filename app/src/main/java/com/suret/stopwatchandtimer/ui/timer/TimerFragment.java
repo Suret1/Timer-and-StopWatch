@@ -1,12 +1,16 @@
 package com.suret.stopwatchandtimer.ui.timer;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +31,7 @@ public class TimerFragment extends Fragment {
     private NumberPicker hourPicker;
     private NumberPicker minutePicker;
     private NumberPicker secondPicker;
-    private MediaPlayer spinEffect;
+    private MediaPlayer spinEffect, finishEffect;
     private LinearLayout linearLayout;
     private Button start_btn, stop_btn;
     private View myView;
@@ -49,6 +53,17 @@ public class TimerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Window window = getActivity().getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.WHITE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.setDecorFitsSystemWindows(false);
+        } else {
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+
+        finishEffect = MediaPlayer.create(getActivity(), R.raw.finish);
         spinEffect = MediaPlayer.create(getActivity(), R.raw.spin);
         mTextViewCountDown = view.findViewById(R.id.text_view_countdown);
         hourPicker = view.findViewById(R.id.hours_picker);
@@ -66,6 +81,7 @@ public class TimerFragment extends Fragment {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         myView = inflater.inflate(R.layout.count_down_layout, null);
+
 
         mTextViewCountDown = myView.findViewById(R.id.text_view_countdown);
         linearLayout.addView(myView);
@@ -94,7 +110,7 @@ public class TimerFragment extends Fragment {
 
     private void startTimer() {
 
-        if (isPaused != true) {
+        if (!isPaused) {
             mStartTimeInMillis = (hour * 3600000) + (minute * 60000) + (second * 1000) + 1000;
             mTimeLeftMillis = mStartTimeInMillis;
         }
@@ -109,6 +125,7 @@ public class TimerFragment extends Fragment {
 
             @Override
             public void onFinish() {
+                finishEffect.start();
                 mTimerRunning = false;
                 isPaused = false;
                 updateWatchInterface();
@@ -147,6 +164,7 @@ public class TimerFragment extends Fragment {
             start_btn.setBackgroundResource(R.drawable.custom_start_button);
             start_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.pause, 0, 0, 0);
             stop_btn.setVisibility(View.VISIBLE);
+
             myView.setVisibility(View.VISIBLE);
             spinLayout.setVisibility(View.GONE);
         } else {
@@ -160,8 +178,7 @@ public class TimerFragment extends Fragment {
         }
     }
 
-
-    private NumberPicker.OnValueChangeListener hourValueChangeListener = new NumberPicker.OnValueChangeListener() {
+    private final NumberPicker.OnValueChangeListener hourValueChangeListener = new NumberPicker.OnValueChangeListener() {
         @Override
         public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
             spinEffect.start();
@@ -169,7 +186,7 @@ public class TimerFragment extends Fragment {
             buttonHideShowListener();
         }
     };
-    private NumberPicker.OnValueChangeListener minuteValueChangeListener = new NumberPicker.OnValueChangeListener() {
+    private final NumberPicker.OnValueChangeListener minuteValueChangeListener = new NumberPicker.OnValueChangeListener() {
         @Override
         public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
             spinEffect.start();
@@ -177,7 +194,7 @@ public class TimerFragment extends Fragment {
             buttonHideShowListener();
         }
     };
-    private NumberPicker.OnValueChangeListener secondValueChangeListener = new NumberPicker.OnValueChangeListener() {
+    private final NumberPicker.OnValueChangeListener secondValueChangeListener = new NumberPicker.OnValueChangeListener() {
         @Override
         public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
             spinEffect.start();

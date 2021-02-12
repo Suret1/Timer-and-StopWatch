@@ -138,16 +138,17 @@
             android:orientation="vertical">
 
             <Button
-                android:background="@drawable/custom_start_button"
                 android:id="@+id/stop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stop"
+                android:background="@drawable/custom_start_button"
                 android:drawableLeft="@drawable/stop"
-                app:backgroundTint="@null"
+                android:drawableTint="@color/white"
                 android:fontFamily="@font/open_sans"
+                android:text="Stop"
+                android:textColor="@color/white"
                 android:visibility="invisible"
-                android:drawableTint="@color/white"/>
+                app:backgroundTint="@null" />
         </LinearLayout>
 
         <LinearLayout
@@ -165,8 +166,8 @@
                 android:drawableTint="@color/white"
                 android:fontFamily="@font/open_sans"
                 android:text="Start"
-                android:visibility="invisible"
                 android:textColor="@color/white"
+                android:visibility="invisible"
                 app:backgroundTint="@null" />
         </LinearLayout>
     </LinearLayout>

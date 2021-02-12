@@ -3,7 +3,6 @@ package com.suret.stopwatchandtimer.ui.timer;
 import android.content.Context;
 import android.graphics.Color;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -56,12 +55,7 @@ public class TimerFragment extends Fragment {
         Window window = getActivity().getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.WHITE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false);
-        } else {
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         finishEffect = MediaPlayer.create(getActivity(), R.raw.finish);
         spinEffect = MediaPlayer.create(getActivity(), R.raw.spin);
@@ -69,9 +63,9 @@ public class TimerFragment extends Fragment {
         hourPicker = view.findViewById(R.id.hours_picker);
         minutePicker = view.findViewById(R.id.minutes_picker);
         secondPicker = view.findViewById(R.id.seconds_picker);
-        start_btn = view.findViewById(R.id.button);
+        start_btn = view.findViewById(R.id.start_timer_btn);
         linearLayout = view.findViewById(R.id.linearLayout);
-        stop_btn = view.findViewById(R.id.stop);
+        stop_btn = view.findViewById(R.id.stop_timer_btn);
         spinLayout = view.findViewById(R.id.spinLayout);
         hourPicker.setOnValueChangedListener(hourValueChangeListener);
 
@@ -164,7 +158,6 @@ public class TimerFragment extends Fragment {
             start_btn.setBackgroundResource(R.drawable.custom_start_button);
             start_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.pause, 0, 0, 0);
             stop_btn.setVisibility(View.VISIBLE);
-
             myView.setVisibility(View.VISIBLE);
             spinLayout.setVisibility(View.GONE);
         } else {

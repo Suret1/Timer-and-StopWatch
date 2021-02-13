@@ -65,7 +65,7 @@ public class TimerFragment extends Fragment {
         secondPicker = view.findViewById(R.id.seconds_picker);
         start_btn = view.findViewById(R.id.start_timer_btn);
         linearLayout = view.findViewById(R.id.linearLayout);
-        stop_btn = view.findViewById(R.id.stop_timer_btn);
+        stop_btn = view.findViewById(R.id.reset_timer_btn);
         spinLayout = view.findViewById(R.id.spinLayout);
         hourPicker.setOnValueChangedListener(hourValueChangeListener);
 
@@ -75,7 +75,6 @@ public class TimerFragment extends Fragment {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         myView = inflater.inflate(R.layout.count_down_layout, null);
-
 
         mTextViewCountDown = myView.findViewById(R.id.text_view_countdown);
         linearLayout.addView(myView);
@@ -158,8 +157,9 @@ public class TimerFragment extends Fragment {
             start_btn.setBackgroundResource(R.drawable.custom_start_button);
             start_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.pause, 0, 0, 0);
             stop_btn.setVisibility(View.VISIBLE);
+            spinLayout.setVisibility(View.INVISIBLE);
             myView.setVisibility(View.VISIBLE);
-            spinLayout.setVisibility(View.GONE);
+
         } else {
             start_btn.setText("Start");
             start_btn.setBackgroundResource(R.drawable.custom_start_button);

@@ -138,7 +138,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/stop_timer_btn"
+                android:id="@+id/reset_timer_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_start_button"

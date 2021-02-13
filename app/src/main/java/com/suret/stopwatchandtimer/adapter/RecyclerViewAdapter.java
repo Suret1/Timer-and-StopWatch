@@ -1,7 +1,6 @@
 package com.suret.stopwatchandtimer.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +18,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mData;
     private LayoutInflater mInflater;
 
-
     public RecyclerViewAdapter(Context context, ArrayList<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
-
     }
 
     @NonNull
@@ -38,7 +35,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull RowHolder holder, int position) {
         String result = mData.get(position);
         holder.textResult.setText(result);
-
     }
 
     @Override
@@ -53,8 +49,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public RowHolder(@NonNull View itemView) {
             super(itemView);
             textResult = itemView.findViewById(R.id.txtContent);
-
         }
-
     }
 }

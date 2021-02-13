@@ -145,7 +145,7 @@ public class TimerFragment extends Fragment {
     private void pauseTimer() {
         countDownTimer.cancel();
         start_btn.setText("Start");
-        start_btn.setBackgroundResource(R.drawable.custom_start_button);
+        start_btn.setBackgroundResource(R.drawable.button_bg);
         start_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.play, 0, 0, 0);
         mTimerRunning = false;
         isPaused = true;
@@ -154,7 +154,7 @@ public class TimerFragment extends Fragment {
     private void updateWatchInterface() {
         if (mTimerRunning) {
             start_btn.setText("Pause");
-            start_btn.setBackgroundResource(R.drawable.custom_start_button);
+            start_btn.setBackgroundResource(R.drawable.button_bg);
             start_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.pause, 0, 0, 0);
             stop_btn.setVisibility(View.VISIBLE);
             spinLayout.setVisibility(View.INVISIBLE);
@@ -162,7 +162,7 @@ public class TimerFragment extends Fragment {
 
         } else {
             start_btn.setText("Start");
-            start_btn.setBackgroundResource(R.drawable.custom_start_button);
+            start_btn.setBackgroundResource(R.drawable.button_bg);
             start_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.play, 0, 0, 0);
             stop_btn.setVisibility(View.INVISIBLE);
             myView.setVisibility(View.INVISIBLE);

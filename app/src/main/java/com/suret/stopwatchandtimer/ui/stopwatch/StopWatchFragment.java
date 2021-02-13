@@ -1,6 +1,5 @@
 package com.suret.stopwatchandtimer.ui.stopwatch;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -8,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -73,7 +70,6 @@ public class StopWatchFragment extends Fragment {
         });
         reset_timer_btn.setOnClickListener(v -> {
             if (mTimeRunning) {
-                String textTime = resultCount + "." + stopwatchTV.getText().toString();
                 result.add(stopwatchTV.getText().toString());
                 Collections.sort(result, Collections.reverseOrder());
                 resultCount = result.size();
@@ -98,7 +94,6 @@ public class StopWatchFragment extends Fragment {
     }
 
     private void startTimer() {
-
         stopwatch.start();
         mTimeRunning = true;
         updateWatchInterface();
@@ -128,20 +123,20 @@ public class StopWatchFragment extends Fragment {
     private void updateWatchInterface() {
         if (mTimeRunning) {
             start_btn.setText("Pause");
-            start_btn.setBackgroundResource(R.drawable.custom_start_button);
+            start_btn.setBackgroundResource(R.drawable.button_bg);
             start_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.pause, 0, 0, 0);
             reset_timer_btn.setVisibility(View.VISIBLE);
             reset_timer_btn.setText("Add");
-            reset_timer_btn.setBackgroundResource(R.drawable.custom_start_button);
+            reset_timer_btn.setBackgroundResource(R.drawable.button_bg);
             reset_timer_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.flag, 0, 0, 0);
 
         } else {
             start_btn.setText("Start");
-            start_btn.setBackgroundResource(R.drawable.custom_start_button);
+            start_btn.setBackgroundResource(R.drawable.button_bg);
             start_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.play, 0, 0, 0);
             reset_timer_btn.setVisibility(View.VISIBLE);
             reset_timer_btn.setText("Reset");
-            reset_timer_btn.setBackgroundResource(R.drawable.custom_start_button);
+            reset_timer_btn.setBackgroundResource(R.drawable.button_bg);
             reset_timer_btn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.stop, 0, 0, 0);
 
         }
